@@ -7,7 +7,7 @@
             int[,] initial = {{ 0, 1 ,2},
                               { 5 ,6 ,3},
                               { 4, 7 ,8} };
-            Node node = new(initial,type:Type.HAMMING);
+            Node node = new(initial);
             Print(node.Matrix);
             Console.WriteLine("=============================================");
             Console.WriteLine("HAMMING = " + node.H);
