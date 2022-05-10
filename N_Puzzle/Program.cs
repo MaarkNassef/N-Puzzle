@@ -7,10 +7,10 @@
             int[,] initial = {{ 0, 1 ,2},
                               { 5 ,6 ,3},
                               { 4, 7 ,8} };
-            Node node = new(initial);
+            Node node = new(initial,type:Type.MANHATTEN);
             Print(node.Matrix);
             Console.WriteLine("=============================================");
-            Console.WriteLine("Hamming = " + node.H);
+            Console.WriteLine("MANHATTEN = " + node.H);
             Console.WriteLine("=============================================");
             PriorityQueue<Node,int> queue = node.AllPossibleMoves();
             while (queue.Count>0)
@@ -18,7 +18,7 @@
                 Node n = queue.Dequeue();
                 Print(n.Matrix);
                 Console.WriteLine("=============================================");
-                Console.WriteLine("Hamming = " + n.H);
+                Console.WriteLine("MANHATTEN = " + n.H);
                 Console.WriteLine("=============================================");
             }
         }
