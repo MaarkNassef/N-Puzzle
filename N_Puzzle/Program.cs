@@ -5,7 +5,6 @@
         public static void Main(string[] args)
         {
             Console.WriteLine("It works!");
-            Node node = new Node();
         }
     }
 }

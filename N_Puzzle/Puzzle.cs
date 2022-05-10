@@ -8,6 +8,6 @@ namespace N_Puzzle
 {
     public class Puzzle
     {
-
+        PriorityQueue<Node,int> queue = new PriorityQueue<Node,int>();
     }
 }
