@@ -7,13 +7,13 @@
             int[,] initial = {{ 0, 1 ,2},
                               { 5 ,6 ,3},
                               { 4, 7 ,8} };
-            Node node = new(initial,type:Type.HAMMING);
+            Node node = new(initial, type: Type.HAMMING);
             Print(node.Matrix);
             Console.WriteLine("=============================================");
             Console.WriteLine("HAMMING = " + node.H);
             Console.WriteLine("=============================================");
-            PriorityQueue<Node,int> queue = node.AllPossibleMoves();
-            while (queue.Count>0)
+            PriorityQueue<Node, int> queue = node.AllPossibleMoves();
+            while (queue.Count > 0)
             {
                 Node n = queue.Dequeue();
                 Print(n.Matrix);
@@ -28,12 +28,12 @@
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    if (matrix[i,j] == 0)
+                    if (matrix[i, j] == 0)
                     {
                         Console.Write("\t");
                         continue;
                     }
-                    Console.Write(matrix[i,j]+"\t");
+                    Console.Write(matrix[i, j] + "\t");
                 }
                 Console.WriteLine();
             }
