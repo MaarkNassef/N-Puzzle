@@ -1,4 +1,6 @@
-﻿namespace N_Puzzle
+﻿using System.Diagnostics;
+
+namespace N_Puzzle
 {
     public enum Algorithm
     {
@@ -76,7 +78,18 @@
                         Console.WriteLine("\n===========================");
                         Console.WriteLine("||Sample Tests -Solvable-||");
                         Console.WriteLine("===========================");
-                        ReadAndTest(SampleSolveableTests, PrintSteps: true);
+                        Console.WriteLine("Choose the way to solve\n[1]Manhatten\n[2]Hamming");
+#pragma warning disable CS8604 // Possible null reference argument.
+                        int MorH = int.Parse(Console.ReadLine());
+#pragma warning restore CS8604 // Possible null reference argument.
+                        if (MorH == 1)
+                        {
+                            ReadAndTest(SampleSolveableTests, Type.MANHATTEN);
+                        }
+                        else if (MorH == 2)
+                        {
+                            ReadAndTest(SampleSolveableTests, Type.HAMMING);
+                        }
                         Console.WriteLine("\n=============================");
                         Console.WriteLine("||Sample Tests -Unsolvable-||");
                         Console.WriteLine("=============================");
@@ -90,7 +103,7 @@
                         Console.WriteLine("==========================================");
                         Console.WriteLine("Choose the way to solve\n[1]Manhatten\n[2]Hamming");
 #pragma warning disable CS8604 // Possible null reference argument.
-                        int MorH = int.Parse(Console.ReadLine());
+                        MorH = int.Parse(Console.ReadLine());
 #pragma warning restore CS8604 // Possible null reference argument.
                         if (MorH == 1)
                         {
@@ -231,7 +244,8 @@
                 }
                 sr.Close();
                 file.Close();
-                DateTime t = DateTime.Now;
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
                 if (algorithm == Algorithm.ASTAR)
                 {
                     Solve(initial, type, PrintSteps);
@@ -240,7 +254,8 @@
                 {
                     BFSSolve(initial, type, PrintSteps);
                 }
-                Console.WriteLine("Time Elapsed = " + (DateTime.Now - t).TotalSeconds + " Seconds!");
+                stopwatch.Stop();
+                Console.WriteLine("Time Elapsed = " + stopwatch.Elapsed.TotalSeconds + " seconds, In Milliseconds = "+stopwatch.Elapsed.TotalMilliseconds+" ms!");
             }
         }
     }
