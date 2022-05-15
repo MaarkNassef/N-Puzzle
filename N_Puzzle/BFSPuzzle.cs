@@ -76,7 +76,11 @@ namespace N_Puzzle
         public Stack<BFSNode> GetRoot(BFSNode node)
         {
             Stack<BFSNode> stack = new Stack<BFSNode>();
-            GetRootHelper(stack, node);
+            while (node != null)
+            {
+                stack.Push(node);
+                node = node.Parent;
+            }
             return stack;
         }
         private void GetRootHelper(Stack<BFSNode> stack, BFSNode node)

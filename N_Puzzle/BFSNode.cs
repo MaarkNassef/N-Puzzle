@@ -8,14 +8,12 @@
         public int H;
         public Type type;
         public Tuple<int, int> ZeroPlace;
-        public char? PreferredStep;
-        public BFSNode(int[,] matrix, BFSNode? parent = null, int G = 0, char PreferredStep = '\0', Type type = Type.HAMMING)
+        public BFSNode(int[,] matrix, BFSNode? parent = null, int G = 0, Type type = Type.HAMMING)
         {
             this.Matrix = matrix;
             this.type = type;
             this.Parent = parent;
             this.ZeroPlace = new Tuple<int, int>(matrix.GetLength(0), matrix.GetLength(1)); //Garbage.
-            this.PreferredStep = PreferredStep;
             this.G = G;
             if (type.Equals(Type.HAMMING))
             {
@@ -120,7 +118,7 @@
                 }
                 change[ZeroPlace.Item1, ZeroPlace.Item2] = change[newPoint.Item1, newPoint.Item2];
                 change[newPoint.Item1, newPoint.Item2] = 0;
-                return new BFSNode(change, this, G + 1, 'U', this.type);
+                return new BFSNode(change, this, G + 1, this.type);
             }
             return null;
         }
@@ -139,7 +137,7 @@
                 }
                 change[ZeroPlace.Item1, ZeroPlace.Item2] = change[newPoint.Item1, newPoint.Item2];
                 change[newPoint.Item1, newPoint.Item2] = 0;
-                return new BFSNode(change, this, G + 1, 'D', this.type);
+                return new BFSNode(change, this, G + 1, this.type);
             }
             return null;
         }
@@ -158,7 +156,7 @@
                 }
                 change[ZeroPlace.Item1, ZeroPlace.Item2] = change[newPoint.Item1, newPoint.Item2];
                 change[newPoint.Item1, newPoint.Item2] = 0;
-                return new BFSNode(change, this, G + 1, 'L', this.type);
+                return new BFSNode(change, this, G + 1, this.type);
             }
             return null;
         }
@@ -177,7 +175,7 @@
                 }
                 change[ZeroPlace.Item1, ZeroPlace.Item2] = change[newPoint.Item1, newPoint.Item2];
                 change[newPoint.Item1, newPoint.Item2] = 0;
-                return new BFSNode(change, this, G + 1, 'R', this.type);
+                return new BFSNode(change, this, G + 1, this.type);
             }
             return null;
         }

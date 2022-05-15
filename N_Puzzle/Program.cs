@@ -84,11 +84,11 @@ namespace N_Puzzle
 #pragma warning restore CS8604 // Possible null reference argument.
                         if (MorH == 1)
                         {
-                            ReadAndTest(SampleSolveableTests, Type.MANHATTEN);
+                            ReadAndTest(SampleSolveableTests, Type.MANHATTEN, PrintSteps: true);
                         }
                         else if (MorH == 2)
                         {
-                            ReadAndTest(SampleSolveableTests, Type.HAMMING);
+                            ReadAndTest(SampleSolveableTests, Type.HAMMING, PrintSteps: true);
                         }
                         Console.WriteLine("\n=============================");
                         Console.WriteLine("||Sample Tests -Unsolvable-||");
@@ -107,16 +107,16 @@ namespace N_Puzzle
 #pragma warning restore CS8604 // Possible null reference argument.
                         if (MorH == 1)
                         {
-                            ReadAndTest(CompleteSolvableManhattenAndHamming, Type.MANHATTEN);
+                            ReadAndTest(CompleteSolvableManhattenAndHamming, Type.MANHATTEN,PrintSteps: true);
                         }
                         else if (MorH == 2)
                         {
-                            ReadAndTest(CompleteSolvableManhattenAndHamming, Type.HAMMING);
+                            ReadAndTest(CompleteSolvableManhattenAndHamming, Type.HAMMING, PrintSteps: true);
                         }
                         Console.WriteLine("\n===================================");
                         Console.WriteLine("||Complete Tests -Manhatten only-||");
                         Console.WriteLine("===================================");
-                        ReadAndTest(CompleteSolvableManhattenOnly, Type.MANHATTEN);
+                        ReadAndTest(CompleteSolvableManhattenOnly, Type.MANHATTEN, PrintSteps: true);
                         Console.WriteLine("\n===============================");
                         Console.WriteLine("||Complete Tests -Unsolvable-||");
                         Console.WriteLine("===============================");
@@ -128,7 +128,18 @@ namespace N_Puzzle
                         Console.WriteLine("\n===============================");
                         Console.WriteLine("||Complete Tests -Very Large-||");
                         Console.WriteLine("===============================");
-                        ReadAndTest(CompleteVeryLarge, Type.MANHATTEN);
+                        Console.WriteLine("Choose the way to solve\n[1]Manhatten\n[2]Hamming");
+#pragma warning disable CS8604 // Possible null reference argument.
+                        MorH = int.Parse(Console.ReadLine());
+#pragma warning restore CS8604 // Possible null reference argument.
+                        if (MorH == 1)
+                        {
+                            ReadAndTest(CompleteVeryLarge, Type.MANHATTEN, PrintSteps: true);
+                        }
+                        else if (MorH == 2)
+                        {
+                            ReadAndTest(CompleteVeryLarge, Type.HAMMING, PrintSteps: true);
+                        }
                         break;
                     #endregion
                     case 4:
@@ -138,7 +149,7 @@ namespace N_Puzzle
                         Console.WriteLine("===================================");
                         List<string> BFSSample = new List<string>(SampleSolveableTests);
                         BFSSample.RemoveAt(BFSSample.Count - 1);
-                        ReadAndTest(BFSSample, Type.MANHATTEN, Algorithm.BFS);
+                        ReadAndTest(BFSSample, Type.MANHATTEN, Algorithm.BFS, PrintSteps: true);
                         Console.WriteLine("\n======================================");
                         Console.WriteLine("||BFS Tests -Sample Unsolvable Only-||");
                         Console.WriteLine("======================================");
@@ -173,7 +184,7 @@ namespace N_Puzzle
             Stack<Node> nodes = puzzle.Solve();
             if (puzzle.isSolvable)
             {
-                Console.WriteLine("We can solve it in " + puzzle.numOfSteps + " steps!");
+                Console.WriteLine("It is Solvable!");
             }
             else
             {
@@ -181,16 +192,17 @@ namespace N_Puzzle
             }
             if (PrintSteps)
             {
-                string stepsStr = string.Empty;
                 while (nodes.Count > 0)
                 {
                     Node nextNode = nodes.Pop();
-                    stepsStr += nextNode.PreferredStep;
-                    //Print(nextNode.Matrix);
-                    //Console.WriteLine("---------------------------------------------------");
-                    //Console.WriteLine("---------------------------------------------------");
+                    Print(nextNode.Matrix);
+                    Console.WriteLine("---------------------------------------------------");
+                    Console.WriteLine("---------------------------------------------------");
                 }
-                Console.WriteLine("The steps: " + stepsStr);
+            }
+            if (puzzle.isSolvable)
+            {
+                Console.WriteLine("# of movements = " + puzzle.numOfSteps + ".");
             }
         }
         public static void BFSSolve(int[,] initial, Type t, bool PrintSteps)
@@ -200,7 +212,7 @@ namespace N_Puzzle
             Stack<BFSNode> nodes = puzzle.Solve();
             if (puzzle.isSolvable)
             {
-                Console.WriteLine("We can solve it in " + puzzle.numOfSteps + " steps!");
+                Console.WriteLine("It is Solvable!");
             }
             else
             {
@@ -208,16 +220,17 @@ namespace N_Puzzle
             }
             if (PrintSteps)
             {
-                string stepsStr = string.Empty;
                 while (nodes.Count > 0)
                 {
                     BFSNode nextNode = nodes.Pop();
-                    stepsStr += nextNode.PreferredStep;
-                    //Print(nextNode.Matrix);
-                    //Console.WriteLine("---------------------------------------------------");
-                    //Console.WriteLine("---------------------------------------------------");
+                    Print(nextNode.Matrix);
+                    Console.WriteLine("---------------------------------------------------");
+                    Console.WriteLine("---------------------------------------------------");
                 }
-                Console.WriteLine("The steps: " + stepsStr);
+            }
+            if (puzzle.isSolvable)
+            {
+                Console.WriteLine("# of movements = " + puzzle.numOfSteps + ".");
             }
         }
         public static void ReadAndTest(List<string> paths, Type type = Type.HAMMING, Algorithm algorithm = Algorithm.ASTAR, bool PrintSteps = false)
@@ -256,6 +269,7 @@ namespace N_Puzzle
                 }
                 stopwatch.Stop();
                 Console.WriteLine("Time Elapsed = " + stopwatch.Elapsed.TotalSeconds + " seconds, In Milliseconds = "+stopwatch.Elapsed.TotalMilliseconds+" ms!");
+                Console.WriteLine("=============================================================================================");
             }
         }
     }

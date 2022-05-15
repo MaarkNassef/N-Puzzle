@@ -70,7 +70,11 @@
         public Stack<Node> GetRoot(Node node)
         {
             Stack<Node> stack = new Stack<Node>();
-            GetRootHelper(stack, node);
+            while (node != null)
+            {
+                stack.Push(node);
+                node = node.Parent;
+            }
             return stack;
         }
         private void GetRootHelper(Stack<Node> stack, Node node)
