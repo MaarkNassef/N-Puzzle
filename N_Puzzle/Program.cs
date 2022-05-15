@@ -60,13 +60,13 @@ namespace N_Puzzle
             #region Run All test cases...
             while (true)
             {
-                Console.WriteLine("N-Puzzle:\n[1] Sample test cases\n[2] Complete testing\n[3] Very Large Complete testing\n[4] BFS Sample\n[5] Exit");
-                Console.WriteLine("\nEnter your choice [1-2-3-4-5]: ");
+                Console.WriteLine("N-Puzzle:\n[1] Sample test cases\n[2] Complete testing (Manhatten and Hamming)\n[3] Complete testing (Manhatten only)\n[4] Very Large Complete testing\n[5] BFS Sample\n[6] Exit");
+                Console.WriteLine("\nEnter your choice [1-2-3-4-5-6]: ");
 #pragma warning disable CS8604 // Possible null reference argument.
                 int choice = int.Parse(Console.ReadLine());
 #pragma warning restore CS8604 // Possible null reference argument.
                 #region Exit
-                if (choice == 5)
+                if (choice == 6)
                 {
                     break;
                 }
@@ -97,7 +97,7 @@ namespace N_Puzzle
                         break;
                     #endregion
                     case 2:
-                        #region Complete Tests
+                        #region Complete Tests (Manhatten and Hamming)
                         Console.WriteLine("\n==========================================");
                         Console.WriteLine("||Complete Tests -Manhatten and Hamming-||");
                         Console.WriteLine("==========================================");
@@ -113,10 +113,6 @@ namespace N_Puzzle
                         {
                             ReadAndTest(CompleteSolvableManhattenAndHamming, Type.HAMMING, PrintSteps: true);
                         }
-                        Console.WriteLine("\n===================================");
-                        Console.WriteLine("||Complete Tests -Manhatten only-||");
-                        Console.WriteLine("===================================");
-                        ReadAndTest(CompleteSolvableManhattenOnly, Type.MANHATTEN, PrintSteps: true);
                         Console.WriteLine("\n===============================");
                         Console.WriteLine("||Complete Tests -Unsolvable-||");
                         Console.WriteLine("===============================");
@@ -124,6 +120,14 @@ namespace N_Puzzle
                         break;
                     #endregion
                     case 3:
+                        #region Complete testing (Manhatten only)
+                        Console.WriteLine("\n===================================");
+                        Console.WriteLine("||Complete Tests -Manhatten only-||");
+                        Console.WriteLine("===================================");
+                        ReadAndTest(CompleteSolvableManhattenOnly, Type.MANHATTEN, PrintSteps: true);
+                        break;
+                    #endregion
+                    case 4:
                         #region Very Large Test
                         Console.WriteLine("\n===============================");
                         Console.WriteLine("||Complete Tests -Very Large-||");
@@ -142,7 +146,7 @@ namespace N_Puzzle
                         }
                         break;
                     #endregion
-                    case 4:
+                    case 5:
                         #region BFS Sample
                         Console.WriteLine("\n===================================");
                         Console.WriteLine("||BFS Tests -Sample Solvable Only-||");
