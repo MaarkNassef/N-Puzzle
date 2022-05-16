@@ -132,18 +132,7 @@ namespace N_Puzzle
                         Console.WriteLine("\n===============================");
                         Console.WriteLine("||Complete Tests -Very Large-||");
                         Console.WriteLine("===============================");
-                        Console.WriteLine("Choose the way to solve\n[1]Manhatten\n[2]Hamming");
-#pragma warning disable CS8604 // Possible null reference argument.
-                        MorH = int.Parse(Console.ReadLine());
-#pragma warning restore CS8604 // Possible null reference argument.
-                        if (MorH == 1)
-                        {
-                            ReadAndTest(CompleteVeryLarge, Type.MANHATTEN, PrintSteps: true);
-                        }
-                        else if (MorH == 2)
-                        {
-                            ReadAndTest(CompleteVeryLarge, Type.HAMMING, PrintSteps: true);
-                        }
+                        ReadAndTest(CompleteVeryLarge, Type.MANHATTEN, PrintSteps: true);
                         break;
                     #endregion
                     case 5:
